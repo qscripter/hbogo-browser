@@ -1,6 +1,20 @@
 <div class="row">
   <div class="col-md-4">
-    
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="inputSort3" class="control-label col-sm-4">Sort By</label>
+        <div class="col-sm-8">
+          <select id="inputSort3" class="form-control" ng-model="sort">
+            <option value="title">Name (Ascending)</option>
+            <option value="-title">Name (Descending)</option>
+            <option value="endDate">End Date (Ascending)</option>
+            <option value="-endDate">End Date (Descending)</option>
+            <option value="runtime">Runtime (Ascending)</option>
+            <option value="-runtime">Runtime (Descending)</option>
+          </select>
+        </div>
+      </div>
+    </form>
   </div>
   <div class="col-md-4">
     
@@ -10,7 +24,7 @@
   </div>
 </div>
 
-<div class="row panel panel-default" ng-repeat="feature in features | filter: titleFilter">
+<div class="row panel panel-default" ng-repeat="feature in features | filter: titleFilter | orderBy: sort">
   <div class="col-md-2">
     <img class="img-responsive img-movie" src="{{ feature.images.DETAILS }}">
   </div>
@@ -24,7 +38,7 @@
       </div>
       <div class="col-md-2">{{ feature.runtime / 60 | round }} min</div>
       <div class="col-md-2">{{ feature.rating }}</div>
-      <div class="col-md-4">Available Until: {{ feature.endDate | formatDate| date:'MMM dd, yyyy' }}</div>
+      <div class="col-md-4">Available Until: {{ feature.endDate | date:'MMM dd, yyyy' }}</div>
       <div class="col-md-4"><span ng-repeat="genre in feature.genres" class="label label-info genre">{{ genre }}</span></div>
     </div>
   </div>
