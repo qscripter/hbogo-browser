@@ -79,3 +79,7 @@ body {
 .img-movie {
   padding: 12px 0 12px 0;
 }
+
+.borderless td {
+  border-top: none !important;
+}
